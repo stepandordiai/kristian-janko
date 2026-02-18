@@ -1,0 +1,130 @@
+@use "./scss/mixins" as *;
+
+.home {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	row-gap: 30px;
+	min-height: 100svh;
+}
+
+.hero {
+	min-height: 50svh;
+	@include flex-center-start;
+	padding: 30px;
+	row-gap: 15px;
+	flex-direction: column;
+	background-image: url(/hero.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	min-height: 100svh;
+	color: #fff;
+}
+
+.home__title {
+	font-size: clamp(1.5rem, 4vw, 4rem);
+	text-align: center;
+	padding: 0 30px;
+}
+
+.home__link {
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	padding-bottom: 15px;
+	transition: border-bottom 0.3s;
+	color: #fff;
+
+	&:hover {
+		border-bottom: 1px solid rgb(0, 0, 0);
+	}
+}
+
+.home__bottom {
+	display: flex;
+	justify-content: flex-end;
+	flex-direction: column;
+	min-height: 5svh;
+	padding-bottom: 30px;
+}
+
+/* Infinite scroller */
+.scroller__inner {
+	flex-wrap: nowrap;
+	width: max-content;
+	display: flex;
+	column-gap: 30px;
+}
+
+.home__project-img {
+	width: 500px;
+	opacity: 0;
+}
+
+@keyframes revealProjectImg {
+	to {
+		opacity: 1;
+	}
+}
+
+.scroller[data-animated="true"] {
+	overflow: hidden;
+}
+
+.scroller[data-animated="true"] .scroller__inner {
+	animation: scroll var(--_animation-duration, 8s)
+		var(--_animation-direction, forwards) linear infinite;
+}
+
+.scroller[data-direction="right"] {
+	--_animation-direction: reverse;
+}
+
+.scroller[data-direction="left"] {
+	--_animation-direction: forwards;
+}
+
+.scroller[data-speed="slow"] {
+	--_animation-duration: 30s;
+}
+
+.scroller[data-speed="fast"] {
+	--_animation-duration: 5s;
+}
+
+@keyframes scroll {
+	to {
+		transform: translate(calc(-50% - 15px));
+	}
+}
+
+.home__project-link {
+	cursor: none;
+}
+
+@media screen and (width < 897px) {
+	.home {
+		row-gap: 15px;
+	}
+
+	.home__project-img {
+		width: 250px;
+	}
+
+	.home__title {
+		padding: 0 15px;
+	}
+
+	.home__bottom {
+		padding-bottom: 15px;
+	}
+
+	.scroller__inner {
+		column-gap: 15px;
+	}
+
+	@keyframes scroll {
+		to {
+			transform: translate(calc(-50% - 7.5px));
+		}
+	}
+}

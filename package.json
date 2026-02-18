@@ -9,16 +9,19 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "dayjs": "^1.11.19",
+    "framer-motion": "^12.34.0",
     "next": "16.1.6",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "sass": "^1.97.3"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.1.6",
+    "eslint": "^4.1.1",
+    "eslint-config-next": "^0.2.4",
     "typescript": "^5"
   }
 }

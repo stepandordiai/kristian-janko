@@ -1,0 +1,39 @@
+@use "./../scss/mixins" as *;
+
+.contact-me {
+	min-height: 100svh;
+	padding: 80px 30px 30px 30px;
+	display: flex;
+	gap: 30px;
+}
+
+.contact-me__left-container {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.contact-me__details-container {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 30px;
+	margin-top: auto;
+}
+
+.contact-me__title {
+	font-size: clamp(2rem, 6vw, 4rem);
+}
+
+@media screen and (width <= 900px) {
+	.contact-me {
+		flex-direction: column;
+	}
+}
+
+@media screen and (width < 808px) {
+	.contact-me {
+		padding: 65px 15px 15px 15px;
+	}
+}

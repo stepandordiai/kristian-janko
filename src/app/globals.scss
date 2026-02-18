@@ -1,0 +1,35 @@
+@use "./scss/reset";
+@use "./scss/variables";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+	display: none;
+}
+
+body {
+	font-family: "Vollkorn", serif;
+}
+
+#root {
+	display: flex;
+	flex-direction: column;
+}
+
+a {
+	color: #000;
+}
+
+@media screen and (width <= 1000px) {
+	body {
+		padding: 0;
+	}
+}

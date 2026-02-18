@@ -1,0 +1,107 @@
+.dark-mode-btn {
+	margin-left: auto;
+	margin-right: 15px;
+}
+
+body.dark {
+	color: #fff !important;
+	background: #000 !important;
+}
+
+// Home
+body.dark .home__link {
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+	&:hover {
+		border-bottom: 1px solid rgb(255, 255, 255);
+	}
+}
+
+body.dark .header {
+	color: #fff;
+	background: #000;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body.dark .header__logo-link-txt {
+	color: #fff;
+}
+
+.light-logo {
+	display: none;
+}
+
+body.dark .header__nav-link {
+	color: #ffffff;
+}
+
+body.dark .menu__nav-link {
+	color: #ffffff;
+}
+
+body.dark .link-effect::after {
+	background: #fff !important;
+}
+
+body.dark .dark-mode-btn {
+	color: rgb(255, 255, 255);
+}
+body.dark .header__link {
+	color: #fff;
+}
+
+body.dark .custom-cursor {
+	background: rgba(0, 0, 0, 0.5);
+	color: #fff;
+}
+
+body.dark a {
+	color: #fff;
+}
+
+body.dark .menu-btn::before,
+body.dark .menu-btn::after {
+	background: #fff;
+}
+
+body.dark .footer {
+	border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+// Contact
+body.dark button[type="submit"] {
+	background: #fff;
+	color: #000;
+}
+
+body.dark .dark--active {
+	border-bottom: 1px solid rgb(255, 255, 255, 0.2);
+
+	&:hover {
+		border-bottom: 1px solid #fff;
+	}
+}
+
+body.dark .projects__btn--active.dark--active {
+	border-bottom: 1px solid #fff;
+}
+
+body.dark .input {
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+	&:focus {
+		border-bottom: 1px solid rgb(255, 255, 255);
+	}
+}
+
+body.dark .input--active {
+	border-bottom: 1px solid rgb(255, 255, 255);
+}
+
+body.dark textarea {
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+	&:focus {
+		border-bottom: 1px solid rgb(255, 255, 255);
+	}
+}

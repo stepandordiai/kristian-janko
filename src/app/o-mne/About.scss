@@ -1,0 +1,40 @@
+.about {
+	min-height: 100vh;
+	padding: 80px 30px 30px 30px;
+	display: flex;
+}
+.about__title-container {
+	width: 100%;
+}
+
+.about__title {
+	font-size: clamp(2rem, 6vw, 4rem);
+	position: sticky;
+	top: 80px;
+}
+
+.about__container {
+	width: 100%;
+
+	p {
+		text-align: justify;
+		font-size: 18px;
+	}
+}
+
+@media screen and (width <= 1000px) {
+	.about {
+		padding: 65px 15px 15px 15px;
+	}
+
+	.about__title {
+		top: 65px;
+	}
+}
+
+@media screen and (width < 808px) {
+	.about {
+		flex-direction: column;
+		row-gap: 15px;
+	}
+}

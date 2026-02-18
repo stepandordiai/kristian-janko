@@ -1,0 +1,130 @@
+@use "./../scss/mixins" as *;
+
+.projects {
+	padding: 80px 30px 30px 30px;
+	display: flex;
+	gap: 30px;
+}
+
+.projects__title-container {
+	width: 100%;
+}
+
+.projects__title-inner {
+	position: sticky;
+	top: 80px;
+}
+
+.projects__title {
+	font-size: clamp(2rem, 6vw, 4rem);
+}
+
+.projects__btn-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 15px;
+	margin-top: 15px;
+}
+
+.projects__btn {
+	padding-bottom: 15px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	transition: border-bottom 0.3s;
+
+	&:hover {
+		border-bottom: 1px solid rgba(0, 0, 0, 1);
+	}
+}
+
+.projects__btn--active {
+	border-bottom: 1px solid rgba(0, 0, 0, 1);
+}
+
+.projects__mansory-container {
+	width: 100%;
+	display: flex;
+	gap: 15px;
+	height: 100svh;
+}
+
+.projects__labels-container {
+	column-count: 1;
+	gap: 30px;
+	width: 20%;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	overflow-y: scroll;
+}
+
+.projects__label-container {
+	@include flex-center-end;
+	gap: 15px;
+}
+
+.masonry {
+	width: 80%;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	overflow-y: scroll;
+}
+
+.projects__link {
+	scroll-margin-top: 65px;
+	position: relative;
+	width: 100%;
+	cursor: none;
+}
+
+@media screen and (width <= 1000px) {
+	.masonry {
+		gap: 15px;
+
+		.projects__link {
+			width: 100%;
+
+			img {
+				// TODO:
+				display: block;
+				width: 100%;
+			}
+		}
+	}
+
+	.projects__labels-container {
+		display: none;
+	}
+
+	.projects__mansory-container {
+		width: 100%;
+		display: flex;
+		height: auto;
+	}
+
+	.masonry {
+		width: 100%;
+	}
+}
+
+@media screen and (width <= 896px) {
+	.projects {
+		padding: 65px 15px 15px 15px;
+		gap: 15px;
+	}
+
+	.projects__title-inner {
+		top: 65px;
+	}
+
+	.masonry {
+		gap: 15px;
+	}
+}
+
+@media screen and (width < 808px) {
+	.projects {
+		flex-direction: column;
+		row-gap: 15px;
+	}
+}

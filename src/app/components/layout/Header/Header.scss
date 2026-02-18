@@ -1,0 +1,187 @@
+@use "./../../../scss/mixins" as *;
+
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	@include flex-between-center;
+	flex-direction: column;
+	// background: #fff;
+	z-index: 100;
+	padding: 0 30px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.header__right-section {
+	@include flex-center;
+}
+
+.header__top {
+	width: 100%;
+	min-height: 60px;
+	@include flex-between-center;
+}
+
+.header__logo-link {
+	display: flex;
+	gap: 5px;
+}
+
+.header__logo-link-txt {
+	font-size: 1.5rem;
+}
+
+.header__nav {
+	@include flex-center;
+	gap: 60px;
+}
+
+.header__nav-link {
+	color: #000;
+}
+
+.header__projects-qty {
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 0.8rem;
+	transform: translate(125%, -25%);
+}
+
+.link-effect {
+	position: relative;
+
+	&::after {
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: 1px;
+		background: #000;
+		transform: scaleX(0);
+		transform-origin: bottom right;
+		transition: transform 0.3s;
+	}
+
+	&:hover::after {
+		transform: scaleX(1);
+		transform-origin: bottom left;
+	}
+}
+
+.link-effect--active::after {
+	transform: scaleX(1);
+	transform-origin: bottom left;
+}
+
+.header__bottom {
+	display: grid;
+	grid-template-rows: 0fr;
+	overflow: hidden;
+	width: 100%;
+	padding: 0;
+	transition: all 0.5s;
+}
+
+.header__bottom--active {
+	padding: 15px 0;
+	grid-template-rows: 1fr;
+}
+
+// menu-btn
+
+.menu-btn {
+	position: relative;
+	display: none;
+	width: 25px;
+	aspect-ratio: 1/1;
+	transition: all 0.5s;
+}
+
+.menu-btn::before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	height: 100%;
+	width: 2px;
+	background: #000;
+}
+
+.menu-btn::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	height: 2px;
+	width: 100%;
+	background: #000;
+}
+
+.menu-btn--active {
+	transform: rotate(135deg);
+}
+
+// menu
+
+.menu {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	gap: 15px;
+	overflow: hidden;
+}
+
+.menu__nav {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 10px;
+}
+
+.menu__nav-link {
+	font-size: 1.25rem;
+	color: #000;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.25s;
+}
+
+.menu__nav-link--active {
+	opacity: 1;
+	pointer-events: all;
+	transition: opacity 0.5s;
+}
+
+.menu__projects-qty {
+	position: absolute;
+	top: 0;
+	right: 0;
+	transform: translate(125%, -25%);
+	font-size: 0.8rem;
+}
+
+@media screen and (width < 896px) {
+	.menu-btn {
+		display: initial;
+	}
+}
+
+@media screen and (width <= 896px) {
+	.header {
+		padding: 0 15px;
+	}
+
+	.header__nav {
+		display: none;
+	}
+
+	.header__link {
+		display: none;
+	}
+}
