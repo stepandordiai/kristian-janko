@@ -7,7 +7,7 @@
 	width: 100%;
 	@include flex-between-center;
 	flex-direction: column;
-	// background: #fff;
+	background: #fff;
 	z-index: 100;
 	padding: 0 30px;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -39,14 +39,6 @@
 
 .header__nav-link {
 	color: #000;
-}
-
-.header__projects-qty {
-	position: absolute;
-	top: 0;
-	right: 0;
-	font-size: 0.8rem;
-	transform: translate(125%, -25%);
 }
 
 .link-effect {
@@ -156,14 +148,6 @@
 	opacity: 1;
 	pointer-events: all;
 	transition: opacity 0.5s;
-}
-
-.menu__projects-qty {
-	position: absolute;
-	top: 0;
-	right: 0;
-	transform: translate(125%, -25%);
-	font-size: 0.8rem;
 }
 
 @media screen and (width < 896px) {

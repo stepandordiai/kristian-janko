@@ -1,33 +1,34 @@
 "use client";
 
+import { usePreload } from "@/app/context/PreloadContext";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import projectsData from "../../../assets/data/portfolio-data.json";
 import DarkModeBtn from "../../DarkModeBtn/DarkModeBtn";
-import Image from "next/image";
+import LogoAnimated from "@/app/icons/LogoAnimated";
 import "./Header.scss";
 
 const navLinksData = [
 	{ name: "Ůvod", path: `/`, end: true },
-	{ name: "O mně", path: `/o-mne` },
-	{
-		name: "Reference",
-		path: `/reference`,
-		showProjectsQty: true,
-	},
 	{
 		name: "Služby",
-		path: `/sluzby`,
+		path: "#sluzby",
+	},
+	{
+		name: "Reference",
+		path: "#reference",
 	},
 	{
 		name: "Filosofie",
-		path: `/filosofie`,
+		path: "#filosofie",
 	},
+	{ name: "O mně", path: "#o-mne" },
 	{ name: "Kontakt", path: `/kontakt` },
 ];
 
 const Header = () => {
+	const done = usePreload();
+
 	const [menuOpen, setMenuOpen] = useState(false);
 
 	const pathname = usePathname();
@@ -60,7 +61,8 @@ const Header = () => {
 		<header className="header">
 			<div className="header__top">
 				<Link className="header__logo-link" href="/">
-					<Image src="/logo.svg" width={50} height={50} alt="Logo" />
+					{/* <LogoAnimated key={done ? "animate" : "wait"} size={40} /> */}
+					{done && <LogoAnimated size={40} />}
 				</Link>
 				<nav className="header__nav">
 					{navLinksData.map((navLink, i) => {
@@ -73,11 +75,6 @@ const Header = () => {
 								href={navLink.path}
 							>
 								{navLink.name}
-								{navLink.showProjectsQty && (
-									<span className="header__projects-qty">
-										{projectsData.length}
-									</span>
-								)}
 							</Link>
 						);
 					})}
@@ -121,11 +118,6 @@ const Header = () => {
 									href={navLink.path}
 								>
 									{navLink.name}
-									{navLink.showProjectsQty && (
-										<span className="menu__projects-qty">
-											{projectsData.length}
-										</span>
-									)}
 								</Link>
 							);
 						})}

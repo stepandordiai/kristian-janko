@@ -1,0 +1,18 @@
+.preload {
+	position: fixed;
+	inset: 0;
+	z-index: 9999;
+	background: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	animation: animatePreload 1s 6s forwards;
+}
+
+@keyframes animatePreload {
+	to {
+		opacity: 0;
+		pointer-events: none;
+		transform: scale(1.5);
+	}
+}

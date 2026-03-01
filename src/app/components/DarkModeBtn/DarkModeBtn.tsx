@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import Image from "next/image";
+import SunIcon from "@/app/icons/SunIcon";
+import MoonIcon from "@/app/icons/MoonIcon";
 import "./DarkModeBtn.scss";
 
 const DarkModeBtn = () => {
@@ -16,25 +17,7 @@ const DarkModeBtn = () => {
 
 	return (
 		<button onClick={toggleDarkMode} className="dark-mode-btn">
-			{darkMode ? (
-				<Image
-					title="Tmavý"
-					style={{ display: "block" }}
-					src="/icons/moon.png"
-					width={25}
-					height={25}
-					alt="Tmavý"
-				/>
-			) : (
-				<Image
-					title="Světlo"
-					style={{ display: "block" }}
-					src="/icons/sun.png"
-					width={25}
-					height={25}
-					alt="Světlo"
-				/>
-			)}
+			{darkMode ? <MoonIcon size={24} /> : <SunIcon size={24} />}
 		</button>
 	);
 };

@@ -4,8 +4,8 @@
 }
 
 body.dark {
-	color: #fff !important;
-	background: #000 !important;
+	color: var(--clr-light) !important;
+	background: var(--bg-clr-dark) !important;
 }
 
 // Home
