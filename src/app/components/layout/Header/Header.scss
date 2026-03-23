@@ -2,42 +2,80 @@
 
 .header {
 	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
+	top: 10px;
+	right: 10px;
+	left: 10px;
 	@include flex-between-center;
 	flex-direction: column;
-	background: #fff;
 	z-index: 100;
-	padding: 0 30px;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	// border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .header__right-section {
 	@include flex-center;
 }
 
-.header__top {
-	width: 100%;
-	min-height: 60px;
-	@include flex-between-center;
-}
-
 .header__logo-link {
+	position: fixed;
+	top: 10px;
+	left: 10px;
+	background: rgba(0, 0, 0, 0.4);
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+	width: 60px;
+	aspect-ratio: 1/1;
 	display: flex;
-	gap: 5px;
+	justify-content: center;
+	align-items: center;
+	border-radius: 20px;
 }
 
 .header__logo-link-txt {
 	font-size: 1.5rem;
 }
 
+.header-inner {
+	position: fixed;
+	top: 10px;
+	right: 10px;
+	background: rgba(0, 0, 0, 0.4);
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+	height: 60px;
+	padding: 0 5px;
+	border-radius: 20px;
+	@include flex-center;
+	min-width: 60px;
+}
+
 .header__nav {
 	@include flex-center;
-	gap: 60px;
 }
 
 .header__nav-link {
+	color: #fff;
+	min-width: 100px;
+	font-weight: 500;
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 15px;
+	// height: 100% !important;
+
+	&:hover {
+		background: white;
+		color: #000;
+	}
+
+	&:nth-child(1) {
+		background: white;
+		color: #000;
+	}
+}
+
+.header__nav-link--active {
+	background: white;
 	color: #000;
 }
 
@@ -100,7 +138,7 @@
 	transform: translate(-50%, -50%);
 	height: 100%;
 	width: 2px;
-	background: #000;
+	background: #fff;
 }
 
 .menu-btn::after {
@@ -111,7 +149,7 @@
 	transform: translate(-50%, -50%);
 	height: 2px;
 	width: 100%;
-	background: #000;
+	background: #fff;
 }
 
 .menu-btn--active {
@@ -154,18 +192,18 @@
 	.menu-btn {
 		display: initial;
 	}
-}
-
-@media screen and (width <= 896px) {
-	.header {
-		padding: 0 15px;
-	}
 
 	.header__nav {
 		display: none;
 	}
+}
+
+@media screen and (width <= 896px) {
+	.header {
+		// padding: 0 15px;
+	}
 
 	.header__link {
-		display: none;
+		// display: none;
 	}
 }

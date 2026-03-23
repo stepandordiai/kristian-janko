@@ -149,12 +149,49 @@ export default function Home() {
 		<>
 			<CustomCursor />
 			<main className="home">
-				<section className="hero">
-					<h1 className="home__title">UŽITEČNOST, PEVNOST A KRÁSA</h1>
-					<i>promyšlené v každém detailu</i>
-					<Link className="home__link" href="/contact-me">
-						Kontaktujte mě
-					</Link>
+				<section className="hero" id="uvod">
+					<div className="hero-wrapper">
+						<h1 className="home__title">UŽITEČNOST, PEVNOST A KRÁSA</h1>
+						<i style={{ fontSize: "20px" }}>promyšlené v každém detailu</i>
+						<Link className="home__link" href="/contact-me">
+							Kontaktujte mě
+						</Link>
+					</div>
+					<div className="home__bottom">
+						<div
+							className="home__scroller scroller"
+							data-speed="slow"
+							data-direction="left"
+						>
+							<div className="scroller__inner">
+								{portfolioData
+									.slice()
+									.reverse()
+									.map((project, i) => {
+										return (
+											<Link
+												onMouseMove={activeCursor}
+												onMouseLeave={inactiveCursor}
+												onClick={removeCursor}
+												className="home__project-link"
+												key={project.id}
+												href={`/projects/${project.id}`}
+											>
+												<img
+													style={{
+														animation: `revealProjectImg 1s ${0.5 + i * 0.2}s forwards`,
+													}}
+													className="home__project-img"
+													key={project.id}
+													src={project.img[0]}
+													alt={project.name}
+												/>
+											</Link>
+										);
+									})}
+							</div>
+						</div>
+					</div>
 				</section>
 				<section className="services" id="sluzby">
 					<h2 className="section__title">Služby</h2>
@@ -174,41 +211,7 @@ export default function Home() {
 						})}
 					</div>
 				</section>
-				<div className="home__bottom">
-					<div
-						className="home__scroller scroller"
-						data-speed="slow"
-						data-direction="left"
-					>
-						<div className="scroller__inner">
-							{portfolioData
-								.slice()
-								.reverse()
-								.map((project, i) => {
-									return (
-										<Link
-											onMouseMove={activeCursor}
-											onMouseLeave={inactiveCursor}
-											onClick={removeCursor}
-											className="home__project-link"
-											key={project.id}
-											href={`/projects/${project.id}`}
-										>
-											<img
-												style={{
-													animation: `revealProjectImg 1s ${0.5 + i * 0.2}s forwards`,
-												}}
-												className="home__project-img"
-												key={project.id}
-												src={project.img[0]}
-												alt={project.name}
-											/>
-										</Link>
-									);
-								})}
-						</div>
-					</div>
-				</div>
+
 				<section className="reference" id="reference">
 					<h2 className="section__title">Reference</h2>
 					{reference.map((r, i) => {

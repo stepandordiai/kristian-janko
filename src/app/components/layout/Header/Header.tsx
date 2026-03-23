@@ -4,12 +4,11 @@ import { usePreload } from "@/app/context/PreloadContext";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import DarkModeBtn from "../../DarkModeBtn/DarkModeBtn";
 import LogoAnimated from "@/app/icons/LogoAnimated";
 import "./Header.scss";
 
 const navLinksData = [
-	{ name: "Ůvod", path: `/`, end: true },
+	{ name: "Ůvod", path: `#uvod` },
 	{
 		name: "Služby",
 		path: "#sluzby",
@@ -23,7 +22,7 @@ const navLinksData = [
 		path: "#filosofie",
 	},
 	{ name: "O mně", path: "#o-mne" },
-	{ name: "Kontakt", path: `/kontakt` },
+	{ name: "Kontakt", path: `#kontakt` },
 ];
 
 const Header = () => {
@@ -59,18 +58,18 @@ const Header = () => {
 
 	return (
 		<header className="header">
-			<div className="header__top">
-				<Link className="header__logo-link" href="/">
-					{/* <LogoAnimated key={done ? "animate" : "wait"} size={40} /> */}
-					{done && <LogoAnimated size={40} />}
-				</Link>
+			<Link className="header__logo-link" href="/">
+				{/* <LogoAnimated key={done ? "animate" : "wait"} size={40} /> */}
+				{done && <LogoAnimated size={40} color="#fff" />}
+			</Link>
+			<div className="header-inner">
 				<nav className="header__nav">
 					{navLinksData.map((navLink, i) => {
 						return (
 							<Link
 								key={i}
-								className={`header__nav-link link-effect ${
-									pathname === navLink.path ? "link-effect--active" : ""
+								className={`header__nav-link ${
+									pathname === navLink.path ? "header__nav-link--active" : ""
 								}`}
 								href={navLink.path}
 							>
@@ -79,7 +78,7 @@ const Header = () => {
 						);
 					})}
 				</nav>
-				<div className="header__right-section">
+				{/* <div className="header__right-section">
 					<DarkModeBtn />
 					<a
 						className="header__link link-effect"
@@ -88,19 +87,19 @@ const Header = () => {
 					>
 						Instagram
 					</a>
-					{/* menu-btn */}
-					<button
-						onClick={toggleMenu}
-						className={`menu-btn ${menuOpen ? "menu-btn--active" : ""}`}
-						aria-expanded={menuOpen}
-						aria-controls="menu"
-					></button>
-				</div>
+				
+				</div> */}
+				<button
+					onClick={toggleMenu}
+					className={`menu-btn ${menuOpen ? "menu-btn--active" : ""}`}
+					aria-expanded={menuOpen}
+					aria-controls="menu"
+				></button>
 			</div>
-			<div
+
+			{/* <div
 				className={`header__bottom ${menuOpen ? "header__bottom--active" : ""}`}
 			>
-				{/* menu */}
 				<div className="menu" id="menu">
 					<nav className="menu__nav">
 						{navLinksData.map((navLink, i) => {
@@ -112,7 +111,6 @@ const Header = () => {
 										pathname === navLink.path ? "link-effect--active" : ""
 									} ${menuOpen ? "menu__nav-link--active" : ""}`}
 									style={
-										// To start first element with 0ms transitionDelay, use index
 										menuOpen ? { transitionDelay: `${1 + i * 100}ms` } : {}
 									}
 									href={navLink.path}
@@ -132,7 +130,7 @@ const Header = () => {
 						</a>
 					</div>
 				</div>
-			</div>
+			</div> */}
 		</header>
 	);
 };
