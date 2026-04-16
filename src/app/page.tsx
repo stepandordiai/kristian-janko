@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import portfolioData from "./assets/data/portfolio-data.json";
+// import portfolioData from "./assets/data/portfolio-data.json";
 import {
 	activeCursor,
 	inactiveCursor,
@@ -142,9 +142,9 @@ export default function Home() {
 		});
 	}
 
-	useEffect(() => {
-		addAnimation();
-	}, []);
+	// useEffect(() => {
+	// 	addAnimation();
+	// }, []);
 	return (
 		<>
 			<CustomCursor />
@@ -157,7 +157,10 @@ export default function Home() {
 							Kontaktujte mě
 						</Link>
 					</div>
-					<div className="home__bottom">
+					<video className="hero__video" muted autoPlay playsInline loop>
+						<source src="https://felixnieto.b-cdn.net/projects/Loop_web_hero_2025.mp4" />
+					</video>
+					{/* <div className="home__bottom">
 						<div
 							className="home__scroller scroller"
 							data-speed="slow"
@@ -191,9 +194,9 @@ export default function Home() {
 									})}
 							</div>
 						</div>
-					</div>
+					</div> */}
 				</section>
-				<section className="services" id="sluzby">
+				{/* <section className="services" id="sluzby">
 					<h2 className="section__title">Služby</h2>
 					<div className="services-grid">
 						{services.map((service, i) => {
@@ -210,8 +213,7 @@ export default function Home() {
 							);
 						})}
 					</div>
-				</section>
-
+				</section> */}
 				<section className="reference" id="reference">
 					<h2 className="section__title">Reference</h2>
 					{reference.map((r, i) => {

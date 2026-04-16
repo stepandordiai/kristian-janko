@@ -1,4 +1,4 @@
-import { Vollkorn } from "next/font/google";
+import { Raleway } from "next/font/google";
 import Header from "./components/layout/Header/Header";
 import Footer from "./components/layout/Footer/Footer";
 import { Metadata } from "next";
@@ -6,9 +6,9 @@ import Preload from "./components/Preload/Preload";
 import { PreloadProvider } from "./context/PreloadContext";
 import "./globals.scss";
 
-const vollkorn = Vollkorn({
+const vollkorn = Raleway({
 	variable: "--font-vollkorn",
-	weight: ["400", "500", "600"],
+	weight: ["400"],
 	subsets: ["latin"],
 });
 

@@ -4,22 +4,48 @@
 	display: flex;
 	justify-content: space-between;
 	flex-direction: column;
-	row-gap: 30px;
+	// row-gap: 30px;
 }
 
 .hero {
-	min-height: 50svh;
+	position: relative;
+	height: 100svh;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
 	align-items: flex-start;
 	flex-direction: column;
-	// background-image: url(/hero.jpg);
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
-	min-height: 100svh;
 	color: #000;
+}
+
+@keyframes animateHero {
+	0% {
+		transform: scale(0.9);
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+		transform: scale(0.9);
+		// transform: scale(1);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+.hero__video {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	z-index: -1;
+	opacity: 0;
+	transform: scale(0.9);
+
+	animation: animateHero 2s 6s forwards;
 }
 
 .hero-wrapper {
@@ -28,10 +54,20 @@
 	justify-content: flex-start;
 	align-items: flex-start;
 	padding: 30px;
+	color: #fff;
+	opacity: 0;
+	animation: animateHeader 1s 7s forwards;
+}
+
+@keyframes animateHeader {
+	to {
+		opacity: 1;
+	}
 }
 
 .home__title {
-	font-size: clamp(2rem, 4vw, 4rem);
+	font-size: clamp(2rem, 6vw, 4rem);
+	font-weight: 700;
 	// padding: 0 10px;
 }
 
@@ -39,7 +75,7 @@
 	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 	padding-bottom: 15px;
 	transition: border-bottom 0.3s;
-	color: #000;
+	color: #fff;
 
 	&:hover {
 		border-bottom: 1px solid rgb(0, 0, 0);

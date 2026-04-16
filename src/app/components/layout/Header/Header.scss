@@ -8,7 +8,15 @@
 	@include flex-between-center;
 	flex-direction: column;
 	z-index: 100;
+	opacity: 0;
+	animation: animateHeader 1s 7s forwards;
 	// border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+@keyframes animateHeader {
+	to {
+		opacity: 1;
+	}
 }
 
 .header__right-section {
@@ -19,9 +27,8 @@
 	position: fixed;
 	top: 10px;
 	left: 10px;
-	background: rgba(0, 0, 0, 0.4);
-	-webkit-backdrop-filter: blur(10px);
-	backdrop-filter: blur(10px);
+	background: rgba(0, 0, 0, 0.6);
+	@include backdrop-filter(50px);
 	width: 60px;
 	aspect-ratio: 1/1;
 	display: flex;
@@ -38,14 +45,11 @@
 	position: fixed;
 	top: 10px;
 	right: 10px;
-	background: rgba(0, 0, 0, 0.4);
-	-webkit-backdrop-filter: blur(10px);
-	backdrop-filter: blur(10px);
-	height: 60px;
-	padding: 0 5px;
+	background: rgba(0, 0, 0, 0.6);
+	@include backdrop-filter(50px);
+	padding: 5px;
 	border-radius: 20px;
 	@include flex-center;
-	min-width: 60px;
 }
 
 .header__nav {
@@ -56,16 +60,14 @@
 	color: #fff;
 	min-width: 100px;
 	font-weight: 500;
-	height: 50px;
+	padding: 10px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	border-radius: 15px;
-	// height: 100% !important;
 
 	&:hover {
-		background: white;
-		color: #000;
+		background: rgba(255, 255, 255, 0.2);
 	}
 
 	&:nth-child(1) {

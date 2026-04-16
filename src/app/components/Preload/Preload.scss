@@ -7,12 +7,13 @@
 	justify-content: center;
 	align-items: center;
 	animation: animatePreload 1s 6s forwards;
+	overflow: hidden;
 }
 
 @keyframes animatePreload {
 	to {
 		opacity: 0;
+		transform: scale(0.9);
 		pointer-events: none;
-		transform: scale(1.5);
 	}
 }
