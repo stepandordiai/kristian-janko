@@ -1,5 +1,5 @@
-@use "./scss/reset";
-@use "./scss/variables";
+@use "./reset";
+@use "./variables";
 
 html {
 	scroll-behavior: smooth;
@@ -21,6 +21,8 @@ body {
 
 a {
 	color: #000;
+	display: inline-flex;
+	align-items: center;
 }
 
 @media screen and (width <= 1000px) {

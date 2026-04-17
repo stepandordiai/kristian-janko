@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import SunIcon from "@/app/icons/SunIcon";
-import MoonIcon from "@/app/icons/MoonIcon";
+import SunIcon from "@/components/icons/SunIcon";
+import MoonIcon from "@/components/icons/MoonIcon";
 import "./DarkModeBtn.scss";
 
 const DarkModeBtn = () => {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import isTouchDevice from "../../utils/isTouchDevice";
+import isTouchDevice from "@/utils/isTouchDevice";
 import "./CustomCursor.scss";
 
 const CustomCursor = () => {

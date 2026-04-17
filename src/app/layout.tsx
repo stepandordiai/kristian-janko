@@ -1,10 +1,10 @@
 import { Raleway } from "next/font/google";
-import Header from "./components/layout/Header/Header";
-import Footer from "./components/layout/Footer/Footer";
+import Header from "@/components/layout/Header/Header";
+import Footer from "@/components/layout/Footer/Footer";
 import { Metadata } from "next";
-import Preload from "./components/Preload/Preload";
-import { PreloadProvider } from "./context/PreloadContext";
-import "./globals.scss";
+import Preload from "@/components/Preload/Preload";
+import { PreloadProvider } from "@/context/PreloadContext";
+import "@/scss/globals.scss";
 
 const vollkorn = Raleway({
 	variable: "--font-vollkorn",

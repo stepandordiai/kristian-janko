@@ -1,14 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
-// import portfolioData from "./assets/data/portfolio-data.json";
+import { useState } from "react";
 import {
 	activeCursor,
 	inactiveCursor,
 	removeCursor,
-} from "./utils/cursorState";
-import Link from "next/link";
-import CustomCursor from "./components/CustomCursor/CustomCursor";
+} from "@/utils/cursorState";
+import CustomCursor from "@/components/CustomCursor/CustomCursor";
 import "./Home.scss";
 
 const reference = [
@@ -151,12 +149,25 @@ export default function Home() {
 			<main className="home">
 				<section className="hero" id="uvod">
 					<div className="hero-wrapper">
-						<h1 className="home__title">UŽITEČNOST, PEVNOST A KRÁSA</h1>
-						<i style={{ fontSize: "20px" }}>promyšlené v každém detailu</i>
-						<Link className="home__link" href="/contact-me">
-							Kontaktujte mě
-						</Link>
+						<div>
+							<h1 className="home__title">UŽITEČNOST, PEVNOST A KRÁSA</h1>
+							<i style={{ fontSize: "1.5rem" }}>promyšlené v každém detailu</i>
+						</div>
+						<p
+							style={{
+								width: "min(100%, 500px)",
+								alignSelf: "flex-end",
+								marginTop: "auto",
+								textAlign: "right",
+							}}
+						>
+							Lorem ipsum dolor sit amet consectetur adipisicing elit.
+							Laboriosam ducimus quos molestiae nesciunt voluptatibus. Eos nihil
+							aliquid esse exercitationem similique reprehenderit deserunt, sint
+							architecto, excepturi adipisci ratione, error soluta neque!
+						</p>
 					</div>
+
 					<video className="hero__video" muted autoPlay playsInline loop>
 						<source src="https://felixnieto.b-cdn.net/projects/Loop_web_hero_2025.mp4" />
 					</video>

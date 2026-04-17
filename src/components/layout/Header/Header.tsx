@@ -1,10 +1,11 @@
 "use client";
 
-import { usePreload } from "@/app/context/PreloadContext";
+import { usePreload } from "@/context/PreloadContext";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import LogoAnimated from "@/app/icons/LogoAnimated";
+import LogoAnimated from "@/components/icons/LogoAnimated";
+import AnimatedTxt from "@/components/AnimatedTxt/AnimatedTxt";
 import "./Header.scss";
 
 const navLinksData = [
@@ -73,7 +74,7 @@ const Header = () => {
 								}`}
 								href={navLink.path}
 							>
-								{navLink.name}
+								<AnimatedTxt text={navLink.name} />
 							</Link>
 						);
 					})}

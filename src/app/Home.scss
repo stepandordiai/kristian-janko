@@ -1,4 +1,4 @@
-@use "./scss/mixins" as *;
+@use "@/scss/mixins" as *;
 
 .home {
 	display: flex;
@@ -9,13 +9,10 @@
 
 .hero {
 	position: relative;
-	height: 100svh;
+	min-height: 100svh;
 	display: flex;
-	flex-direction: column;
-	justify-content: flex-end;
-	align-items: flex-start;
-	flex-direction: column;
-	color: #000;
+	color: #fff;
+	padding: 30px;
 }
 
 @keyframes animateHero {
@@ -44,16 +41,14 @@
 	z-index: -1;
 	opacity: 0;
 	transform: scale(0.9);
-
 	animation: animateHero 2s 6s forwards;
 }
 
 .hero-wrapper {
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-start;
-	align-items: flex-start;
-	padding: 30px;
+	margin-top: 100px;
+	gap: 30px;
 	color: #fff;
 	opacity: 0;
 	animation: animateHeader 1s 7s forwards;
@@ -266,6 +261,10 @@
 		row-gap: 15px;
 	}
 
+	.hero {
+		padding: 15px !important;
+	}
+
 	.home__project-img {
 		width: 250px;
 	}
@@ -274,12 +273,12 @@
 		padding-bottom: 15px;
 	}
 
-	.hero-wrapper {
-		padding: 15px;
-	}
-
 	.scroller__inner {
 		column-gap: 15px;
+	}
+
+	.about-me-container {
+		flex-direction: column;
 	}
 
 	@keyframes scroll {

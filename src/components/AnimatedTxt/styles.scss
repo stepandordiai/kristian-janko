@@ -1,0 +1,40 @@
+.animated-text {
+	position: relative;
+	display: inline-block;
+	overflow: hidden;
+}
+
+.layer {
+	display: inline-flex;
+}
+
+.layer span {
+	display: inline-block;
+	transition: transform 0.4s ease;
+	will-change: transform;
+}
+
+/* bottom layer stacked */
+.bottom {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* initial states */
+.top span {
+	transform: translateY(0%);
+}
+
+.bottom span {
+	transform: translateY(100%);
+}
+
+/* hover trigger (on parent) */
+.animated-text:hover .top span {
+	transform: translateY(-100%);
+}
+
+.animated-text:hover .bottom span {
+	transform: translateY(0%);
+}
