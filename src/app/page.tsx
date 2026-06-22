@@ -1,13 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
 	activeCursor,
 	inactiveCursor,
 	removeCursor,
 } from "@/utils/cursorState";
 import CustomCursor from "@/components/CustomCursor/CustomCursor";
+import portfolio from "@/data/portfolio.json";
+import Link from "next/link";
+import Hero from "@/components/home/Hero/Hero";
 import "./Home.scss";
+import CopyBtn from "@/components/CopyBtn/CopyBtn";
 
 const reference = [
 	{
@@ -59,18 +63,6 @@ const services = [
 			"posouzení vlivů stavby dle požadavků úřadů",
 			"podklady pro projednání s úřady",
 			"zajištění povolení stavby “inženýring”",
-		],
-	},
-	{
-		title: "Projekt pro provedení stavby",
-		desc: "Realizační dokumentace pro výstavbu",
-		list: [
-			"detailní architektonicko-stavební řešení",
-			"podrobné konstrukční a technické detaily",
-			"koordinace všech profesních částí projektu",
-			"výkresy v podrobnosti pro realizaci stavby",
-			"návaznost jednotlivých konstrukcí a profesí",
-			"podklady pro výběr zhotovitele a realizaci",
 		],
 	},
 ];
@@ -140,45 +132,59 @@ export default function Home() {
 		});
 	}
 
-	// useEffect(() => {
-	// 	addAnimation();
-	// }, []);
+	useEffect(() => {
+		addAnimation();
+	}, []);
 	return (
 		<>
 			<CustomCursor />
 			<main className="home">
-				<section className="hero" id="uvod">
-					<div className="hero-wrapper">
-						<div>
-							<h1 className="home__title">UŽITEČNOST, PEVNOST A KRÁSA</h1>
-							<i style={{ fontSize: "1.5rem" }}>promyšlené v každém detailu</i>
-						</div>
-						<p
-							style={{
-								width: "min(100%, 500px)",
-								alignSelf: "flex-end",
-								marginTop: "auto",
-								textAlign: "right",
-							}}
-						>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit.
-							Laboriosam ducimus quos molestiae nesciunt voluptatibus. Eos nihil
-							aliquid esse exercitationem similique reprehenderit deserunt, sint
-							architecto, excepturi adipisci ratione, error soluta neque!
-						</p>
+				<Hero />
+				<section
+					className="sen"
+					style={{
+						textAlign: "center",
+						maxWidth: "1200px",
+						margin: "100px auto",
+					}}
+				>
+					<h2 className="section__title">
+						STAVBA NENÍ JEN O OBRÁZCÍCH A VÝKRESECH
+					</h2>
+					<p>
+						Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio
+						neque culpa omnis autem beatae, explicabo libero quo? Repellendus
+						reprehenderit veritatis culpa. Nobis quibusdam earum sapiente
+						voluptate sit nam adipisci nisi!
+					</p>
+				</section>
+				<section className="services sen" id="services">
+					<h2 className="section__title">Služby</h2>
+					<div className="services-grid">
+						{services.map((service, i) => {
+							return (
+								<div key={i} className="service-card">
+									<h3 className="service-card__title">{service.title}</h3>
+									<p>{service.desc}</p>
+									<ul>
+										{service.list.map((item, i) => {
+											return <li key={i}>{item}</li>;
+										})}
+									</ul>
+								</div>
+							);
+						})}
 					</div>
-
-					<video className="hero__video" muted autoPlay playsInline loop>
-						<source src="https://felixnieto.b-cdn.net/projects/Loop_web_hero_2025.mp4" />
-					</video>
-					{/* <div className="home__bottom">
+				</section>
+				<section>
+					<div className="home__bottom">
 						<div
 							className="home__scroller scroller"
 							data-speed="slow"
 							data-direction="left"
 						>
 							<div className="scroller__inner">
-								{portfolioData
+								{portfolio
 									.slice()
 									.reverse()
 									.map((project, i) => {
@@ -205,31 +211,13 @@ export default function Home() {
 									})}
 							</div>
 						</div>
-					</div> */}
-				</section>
-				{/* <section className="services" id="sluzby">
-					<h2 className="section__title">Služby</h2>
-					<div className="services-grid">
-						{services.map((service, i) => {
-							return (
-								<div key={i} className="service-card">
-									<h3 className="service-card__title">{service.title}</h3>
-									<p>{service.desc}</p>
-									<ul>
-										{service.list.map((item, i) => {
-											return <li key={i}>{item}</li>;
-										})}
-									</ul>
-								</div>
-							);
-						})}
 					</div>
-				</section> */}
+				</section>
 				<section className="reference" id="reference">
 					<h2 className="section__title">Reference</h2>
 					{reference.map((r, i) => {
 						return (
-							<div className="reference-container" key={i}>
+							<div className="reference-container gabarito" key={i}>
 								<div className="img-wrapper">
 									<img src={r.imgSrc} alt="" />
 								</div>
@@ -242,42 +230,14 @@ export default function Home() {
 						);
 					})}
 				</section>
-				<section className="philosophy" id="filosofie">
-					<h2 className="section__title">Architektonické vedení</h2>
-					<p>
-						Architektura je proces – nejen návrh, ale i dialog, odpovědnost a
-						dlouhodobý dopad stavby na prostředí. Tento článek slouží jako
-						otevřený soubor myšlenek, které se přirozeně formují při práci na
-						projektech. Text průběžně doplňuji podle témat, která považuji za
-						zásadní pro současnou architektonickou praxi.
-					</p>
-					<div>
-						{philosophy.map((item, i) => {
-							return (
-								<div key={i}>
-									<button
-										onClick={() => handlePhilosophyVisible(i)}
-										className="philosophy-btn"
-									>
-										<span>{i + 1 + " " + item.title}</span>
-										<span>+</span>
-									</button>
-									<div
-										className={`philosophy-parent ${philosophyVisible[i] ? "philosophy-parent--visible" : ""}`}
-									>
-										<p className="philosophy-child">{item.desc}</p>
-									</div>
-								</div>
-							);
-						})}
-					</div>
-				</section>
-				<section className="about-me" id="o-mne">
+				<section className="about-me" id="about-me">
 					<h2 className="section__title">O mně</h2>
 					<div className="about-me-container">
 						<div>
-							<div className="about-me-img"></div>
-							<div>
+							<div className="about-me-img">
+								<img src="/kristian-janko.png" alt="" />
+							</div>
+							<div className="gabarito">
 								<h3>Kontakt</h3>
 								<p>
 									Mob.:
@@ -289,10 +249,12 @@ export default function Home() {
 										kristian.janko@email.cz
 									</a>
 								</p>
-								<p>IČO: 24457205</p>
+								<div>
+									<span>IČO: 24457205</span> <CopyBtn value="24457205" />
+								</div>
 							</div>
 						</div>
-						<div>
+						<div className="gabarito">
 							<p>
 								Jmenuji se Kristián Jankó, pocházím z Ukrajiny a celý svůj
 								profesní život se věnuji architektuře a projektování pozemních
@@ -327,6 +289,39 @@ export default function Home() {
 								příklady kvalitní architektury.
 							</p>
 						</div>
+					</div>
+				</section>
+				<section className="contact" id="contact">
+					<h2>Kontat</h2>
+				</section>
+				<section className="philosophy" id="philosophy">
+					<h2 className="section__title">Architektonické vedení</h2>
+					<p>
+						Architektura je proces – nejen návrh, ale i dialog, odpovědnost a
+						dlouhodobý dopad stavby na prostředí. Tento článek slouží jako
+						otevřený soubor myšlenek, které se přirozeně formují při práci na
+						projektech. Text průběžně doplňuji podle témat, která považuji za
+						zásadní pro současnou architektonickou praxi.
+					</p>
+					<div>
+						{philosophy.map((item, i) => {
+							return (
+								<div key={i}>
+									<button
+										onClick={() => handlePhilosophyVisible(i)}
+										className="philosophy-btn"
+									>
+										<span>{i + 1 + " " + item.title}</span>
+										<span>+</span>
+									</button>
+									<div
+										className={`philosophy-parent ${philosophyVisible[i] ? "philosophy-parent--visible" : ""}`}
+									>
+										<p className="philosophy-child">{item.desc}</p>
+									</div>
+								</div>
+							);
+						})}
 					</div>
 				</section>
 			</main>

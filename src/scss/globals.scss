@@ -19,6 +19,27 @@ body {
 	flex-direction: column;
 }
 
+.tenor-sans {
+	font-family: var(--font-tenor-sans);
+}
+
+.cormorant-garamond {
+	font-family: var(--font-cormorant-garamond);
+}
+
+.sen {
+	font-family: var(--font-sen);
+}
+
+.gabarito {
+	font-family: var(--font-gabarito);
+}
+
+.container {
+	width: min(100%, 1920px);
+	margin: 0 auto;
+}
+
 a {
 	color: #000;
 	display: inline-flex;

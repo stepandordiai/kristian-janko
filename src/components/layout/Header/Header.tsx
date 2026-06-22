@@ -3,27 +3,28 @@
 import { usePreload } from "@/context/PreloadContext";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import LogoAnimated from "@/components/icons/LogoAnimated";
 import AnimatedTxt from "@/components/AnimatedTxt/AnimatedTxt";
 import "./Header.scss";
 
 const navLinksData = [
-	{ name: "Ůvod", path: `#uvod` },
+	{ name: "Úvod", path: `#hero` },
 	{
 		name: "Služby",
-		path: "#sluzby",
+		path: "#services",
 	},
 	{
 		name: "Reference",
 		path: "#reference",
 	},
+
+	{ name: "O mně", path: "#about-me" },
+	{ name: "Kontakt", path: `#contact` },
 	{
 		name: "Filosofie",
-		path: "#filosofie",
+		path: "#philosophy",
 	},
-	{ name: "O mně", path: "#o-mne" },
-	{ name: "Kontakt", path: `#kontakt` },
 ];
 
 const Header = () => {
@@ -32,6 +33,88 @@ const Header = () => {
 	const [menuOpen, setMenuOpen] = useState(false);
 
 	const pathname = usePathname();
+
+	const indicatorRef = useRef<HTMLDivElement>(null);
+	const navRef = useRef<HTMLElement>(null);
+
+	const [indicatorStyle, setIndicatorStyle] = useState({
+		width: "0px",
+		left: "0px",
+		transition: "none",
+	});
+	const updateIndicator = () => {
+		if (!navRef.current || !indicatorRef.current) return;
+
+		requestAnimationFrame(() => {
+			const activeLink = navRef.current?.querySelector(
+				".header__nav-link.active",
+			) as HTMLElement;
+
+			if (!activeLink) return;
+
+			setIndicatorStyle((prev) => ({
+				width: `${activeLink.offsetWidth}px`,
+				left: `${activeLink.offsetLeft}px`,
+				transition: prev.width === "0px" ? "none" : "all 0.3s",
+			}));
+		});
+	};
+
+	function getRect(
+		sections: HTMLElement[],
+		navLinks: NodeListOf<HTMLAnchorElement>,
+	) {
+		navLinks.forEach((link) => link.classList.remove("active"));
+
+		sections.forEach((section, index) => {
+			if (!section) return;
+
+			const sectionRect = section.getBoundingClientRect();
+
+			if (sectionRect.top <= 80 && sectionRect.bottom >= 85) {
+				navLinks[index].classList.add("active");
+			}
+		});
+
+		updateIndicator();
+	}
+
+	// FIXME:
+	useEffect(() => {
+		const sections = [
+			document.querySelector(".hero") as HTMLElement,
+			document.querySelector(".services") as HTMLElement,
+			document.querySelector(".reference") as HTMLElement,
+			document.querySelector(".about-me") as HTMLElement,
+			document.querySelector(".contact") as HTMLElement,
+			document.querySelector(".philosophy") as HTMLElement,
+		];
+		const navLinks = document.querySelectorAll(
+			".header__nav-link",
+		) as NodeListOf<HTMLAnchorElement>;
+
+		// Reset indicator style
+		setIndicatorStyle({
+			width: "0px",
+			left: "0px",
+			transition: "none",
+		});
+
+		if (!navLinks.length || !sections.some(Boolean)) return;
+
+		const handleGetRectOnScroll = () => getRect(sections, navLinks);
+
+		const frameId = requestAnimationFrame(() => {
+			handleGetRectOnScroll();
+		});
+
+		document.addEventListener("scroll", handleGetRectOnScroll);
+
+		return () => {
+			cancelAnimationFrame(frameId);
+			document.removeEventListener("scroll", handleGetRectOnScroll);
+		};
+	}, []);
 
 	// menu-btn
 
@@ -64,12 +147,12 @@ const Header = () => {
 				{done && <LogoAnimated size={40} color="#fff" />}
 			</Link>
 			<div className="header-inner">
-				<nav className="header__nav">
+				<nav ref={navRef} className="header__nav">
 					{navLinksData.map((navLink, i) => {
 						return (
 							<Link
 								key={i}
-								className={`header__nav-link ${
+								className={`header__nav-link tenor-sans ${
 									pathname === navLink.path ? "header__nav-link--active" : ""
 								}`}
 								href={navLink.path}
@@ -78,6 +161,11 @@ const Header = () => {
 							</Link>
 						);
 					})}
+					<div
+						className="nav-link-indicator"
+						ref={indicatorRef}
+						style={indicatorStyle}
+					></div>
 				</nav>
 				{/* <div className="header__right-section">
 					<DarkModeBtn />
@@ -98,7 +186,7 @@ const Header = () => {
 				></button>
 			</div>
 
-			{/* <div
+			<div
 				className={`header__bottom ${menuOpen ? "header__bottom--active" : ""}`}
 			>
 				<div className="menu" id="menu">
@@ -131,7 +219,7 @@ const Header = () => {
 						</a>
 					</div>
 				</div>
-			</div> */}
+			</div>
 		</header>
 	);
 };

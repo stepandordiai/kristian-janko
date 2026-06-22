@@ -4,66 +4,6 @@
 	display: flex;
 	justify-content: space-between;
 	flex-direction: column;
-	// row-gap: 30px;
-}
-
-.hero {
-	position: relative;
-	min-height: 100svh;
-	display: flex;
-	color: #fff;
-	padding: 30px;
-}
-
-@keyframes animateHero {
-	0% {
-		transform: scale(0.9);
-		opacity: 0;
-	}
-	50% {
-		opacity: 1;
-		transform: scale(0.9);
-		// transform: scale(1);
-	}
-	100% {
-		opacity: 1;
-		transform: scale(1);
-	}
-}
-
-.hero__video {
-	position: absolute;
-	inset: 0;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	object-position: center;
-	z-index: -1;
-	opacity: 0;
-	transform: scale(0.9);
-	animation: animateHero 2s 6s forwards;
-}
-
-.hero-wrapper {
-	display: flex;
-	flex-direction: column;
-	margin-top: 100px;
-	gap: 30px;
-	color: #fff;
-	opacity: 0;
-	animation: animateHeader 1s 7s forwards;
-}
-
-@keyframes animateHeader {
-	to {
-		opacity: 1;
-	}
-}
-
-.home__title {
-	font-size: clamp(2rem, 6vw, 4rem);
-	font-weight: 700;
-	// padding: 0 10px;
 }
 
 .home__link {
@@ -147,17 +87,12 @@
 
 .services-grid {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: repeat(2, 1fr);
 	gap: 20px;
+	margin-top: 20px;
 }
 
-@media screen and (width < 1200px) {
-	.services-grid {
-		grid-template-columns: repeat(2, 1fr);
-	}
-}
-
-@media screen and (width < 800px) {
+@media screen and (width < 900px) {
 	.services-grid {
 		grid-template-columns: repeat(1, 1fr);
 	}
@@ -166,6 +101,7 @@
 .service-card {
 	background: #e9e9e9;
 	padding: 10px;
+	border-radius: 20px;
 }
 
 .service-card__title {
@@ -183,6 +119,7 @@
 
 .section__title {
 	font-size: 3rem;
+	font-family: var(--font-sen);
 }
 
 .reference-container {
@@ -251,18 +188,11 @@
 }
 
 .about-me-img {
-	width: 300px;
-	height: 400px;
-	background-color: red;
 }
 
 @media screen and (width < 897px) {
 	.home {
 		row-gap: 15px;
-	}
-
-	.hero {
-		padding: 15px !important;
 	}
 
 	.home__project-img {

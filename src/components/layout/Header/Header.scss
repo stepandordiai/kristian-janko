@@ -10,7 +10,6 @@
 	z-index: 100;
 	opacity: 0;
 	animation: animateHeader 1s 7s forwards;
-	// border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 @keyframes animateHeader {
@@ -53,10 +52,21 @@
 }
 
 .header__nav {
+	position: relative;
 	@include flex-center;
 }
 
+.nav-link-indicator {
+	position: absolute;
+	z-index: -1;
+	border-radius: 15px;
+	background: #fff;
+	height: 100%;
+}
+
 .header__nav-link {
+	position: relative;
+	z-index: 1;
 	color: #fff;
 	min-width: 100px;
 	font-weight: 500;
@@ -65,15 +75,7 @@
 	justify-content: center;
 	align-items: center;
 	border-radius: 15px;
-
-	&:hover {
-		// background: rgba(255, 255, 255, 0.2);
-	}
-
-	&:nth-child(1) {
-		background: white;
-		color: #000;
-	}
+	mix-blend-mode: difference;
 }
 
 .header__nav-link--active {
