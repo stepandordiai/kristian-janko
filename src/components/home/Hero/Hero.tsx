@@ -13,10 +13,8 @@ export default function Hero() {
 						</i>
 					</div>
 					<p className="hero__desc sen">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
-						ducimus quos molestiae nesciunt voluptatibus. Eos nihil aliquid esse
-						exercitationem similique reprehenderit deserunt, sint architecto,
-						excepturi adipisci ratione, error soluta neque!
+						Každý projekt je jedinečný, vychází z místa, funkce a zadání.
+						Navrhuji architekturu na míru, od první myšlenky až po realizaci.
 					</p>
 				</div>
 				<img className="hero-img" src="/hero.png" alt="" />

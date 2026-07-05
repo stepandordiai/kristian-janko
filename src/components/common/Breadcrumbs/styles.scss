@@ -1,0 +1,19 @@
+.breadcrumbs {
+	padding: 80px 15px 15px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	font-size: 0.875rem;
+}
+
+.breadcrumbs-list {
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 15px;
+
+	li {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 15px;
+	}
+}

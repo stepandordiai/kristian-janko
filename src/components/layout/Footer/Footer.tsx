@@ -21,12 +21,8 @@ const Footer = () => {
 					gap: 15,
 				}}
 			>
-				<a
-					className="link-effect"
-					href="https://www.instagram.com/kristian.janko"
-					target="_blank"
-				>
-					Instagram
+				<a href="https://www.instagram.com/kristian.janko" target="_blank">
+					<AnimatedTxt text="Instagram" />
 				</a>
 				<button onClick={restoreScrollToTop}>
 					<AnimatedTxt text="Na začátek stránky" />

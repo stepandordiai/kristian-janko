@@ -1,0 +1,97 @@
+// philosophy
+
+.philosophy {
+	font-family: var(--font-eb-garamond);
+}
+
+.philosophy-inner {
+	padding: 20px;
+}
+
+.faqs-list {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	max-width: 700px;
+	margin: 100px auto;
+}
+
+.faqs-item {
+	position: relative;
+
+	&::before {
+		content: "";
+		position: absolute;
+		height: 1px;
+		width: 100%;
+		left: 0;
+		bottom: 0;
+		background: rgba(255, 255, 255, 0.2);
+	}
+
+	&::after {
+		content: "";
+		position: absolute;
+		height: 1px;
+		width: 100%;
+		left: 0;
+		bottom: 0;
+		background: #ffffff;
+		transform: scaleX(0);
+		transform-origin: center;
+		transition: transform 0.5s ease;
+	}
+
+	&--expanded {
+		&::after {
+			transform: scaleX(1);
+		}
+	}
+}
+
+.faqs-q {
+	padding: 10px;
+	font-size: 1.125rem;
+	font-weight: 600;
+	width: 100%;
+	display: flex;
+	align-items: center;
+
+	gap: 10px;
+
+	h3 {
+		text-align: left;
+	}
+}
+
+.faq-q-icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-shrink: 0;
+	transition: transform 0.5s ease;
+	margin-left: auto;
+
+	&--active {
+		transform: rotate(225deg);
+	}
+}
+
+.faqs-a-container {
+	display: grid;
+	grid-template-rows: 0fr;
+	padding: 0px 10px;
+	transition:
+		grid-template-rows 0.5s ease,
+		padding 0.5s ease;
+
+	&--expanded {
+		grid-template-rows: 1fr;
+		padding: 0 10px 10px;
+	}
+}
+
+.faqs-a {
+	overflow: hidden;
+	color: hsl(0, 0%, 75%);
+}

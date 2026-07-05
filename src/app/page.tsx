@@ -1,48 +1,41 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import {
-	activeCursor,
-	inactiveCursor,
-	removeCursor,
-} from "@/utils/cursorState";
 import CustomCursor from "@/components/CustomCursor/CustomCursor";
-import portfolio from "@/data/portfolio.json";
-import Link from "next/link";
 import Hero from "@/components/home/Hero/Hero";
-import "./Home.scss";
+import ImageSlider from "@/components/ImageSlider/ImageSlider";
+import { type Metadata } from "next";
+import AnimatedTxt from "@/components/AnimatedTxt/AnimatedTxt";
 import CopyBtn from "@/components/CopyBtn/CopyBtn";
+import "./Home.scss";
 
 const reference = [
 	{
-		title: "Rodinné domy",
-		desc: "Luxusní bydlení, které přirozeně vyrůstá z místa. Každý detail je součástí promyšleného celku.",
-		imgSrc: "/project-img/01-c.jpg",
+		title: "RODINNÉ DOMY",
+		desc: "Každý dům začíná jinak — jiným pozemkem, jinou rodinou, jiným způsobem života. Mým úkolem není vtlačit vás do hotového konceptu, ale navrhnout dům, který funguje přesně pro vás: dispozičně, technicky i vizuálně. Řeším i věci, které vidíte až za pět let, správné orientování ke světovým stranám, nenápadné detaily, které z domu dělají domov. Složité požadavky beru jako výzvu, ne komplikaci.",
+		imgSrc: "/project-img/Praha.png",
 		type: "STUDIE / Praha 2025",
 	},
 	{
-		title: "Rezidenční bydlení ",
-		desc: "Vystavba 38 rodinných domů v jednotném architektonickém konceptu současného bydlení.",
-		imgSrc: "/project-img/02-c.jpg",
+		title: "REZIDENČNÍ BYDLENÍ",
+		desc: "Rezidenční lokality mají svá vlastní pravidla, nestačí navrhnout hezké a kvalitní domy, ale vymyslet logickou a funkční infrastrukturu. Každý projekt řeším jako celek, od urbanistického konceptu až po detaily, které sousedství drží pohromadě. Výsledkem není řada domů vedle sebe, ale prostředí, ve kterém se lidé rádi usadí. Součástí návrhu je vždy řešení dopravy, zeleně a napojení na stávající zástavbu.",
+		imgSrc: "/project-img/01.png",
 		type: "Stavební povolení / Káranice 2025",
 	},
 	{
-		title: "Bytové domy",
+		title: "BYTOVÉ DOMY",
 		desc: "Moderní bydlení respektující charakter lokality. Architektura založená na proporcích a kvalitních materiálech.",
-		imgSrc: "/project-img/03-c.jpg",
+		imgSrc: "/project-img/Deluxe.png",
 		type: "Stavební povolení / Pozlovice 2026",
 	},
 	{
 		title: "OBČANSKÁ VYBAVENOST",
 		desc: "Moderní restaurace pro slavnostní příležitosti. Prostor, kde se architektura stává součástí zážitku.",
-		imgSrc: "/project-img/04-c.jpg",
+		imgSrc: "/project-img/Deluxe.png",
 		type: "STUDIE / Ukrajina 2020",
 	},
 ];
 
 const services = [
 	{
-		title: "Architektonická studie",
+		title: "ARCHITEKTONICKÁ STUDIE",
 		desc: "Koncepční návrh stavby",
 		list: [
 			"architektonický koncept a variantní řešení",
@@ -67,74 +60,45 @@ const services = [
 	},
 ];
 
-const philosophy = [
-	{
-		title: "Proč je architekt nezbytný",
-		desc: "Ze stejných materiálů lze postavit průměrnou stavbu i kvalitní architekturu. Rozdíl nevzniká v ceně betonu nebo tloušťce izolace, ale ve způsobu, jak jsou jednotlivé prvky uspořádány, proporčně vyváženy a technicky vyřešeny. Architekt propojuje funkci, konstrukci a kontext do jednoho logického celku. Určuje prostorovou hierarchii, pracuje s přirozeným světlem, optimalizuje provoz a předvídá dlouhodobé užívání budovy. Kvalita stavby proto není náhodná. Je výsledkem systematických rozhodnutí, která dávají materiálu řád, prostoru smysl a investici dlouhodobou hodnotu.",
+export const metadata: Metadata = {
+	title: "Kristián Jankó – architekt a projektant pozemních staveb",
+	description:
+		"Architektonické studie a projekty pro povolení staveb. Kristián Jankó navrhuje nadčasovou a technicky promyšlenou architekturu s osobním přístupem ke klientovi.",
+	keywords: [
+		"Kristián Jankó",
+		"architekt",
+		"projektant",
+		"pozemní stavby",
+		"architektonická studie",
+		"projekt pro stavební povolení",
+		"rodinné domy",
+		"bytové domy",
+	],
+	authors: [{ name: "Kristián Jankó" }],
+	alternates: {
+		canonical: "/",
 	},
-	{
-		title: "Jak pracovat s architektem",
-		desc: "Ze stejných materiálů lze postavit průměrnou stavbu i kvalitní architekturu. Rozdíl nevzniká v ceně betonu nebo tloušťce izolace, ale ve způsobu, jak jsou jednotlivé prvky uspořádány, proporčně vyváženy a technicky vyřešeny. Architekt propojuje funkci, konstrukci a kontext do jednoho logického celku. Určuje prostorovou hierarchii, pracuje s přirozeným světlem, optimalizuje provoz a předvídá dlouhodobé užívání budovy. Kvalita stavby proto není náhodná. Je výsledkem systematických rozhodnutí, která dávají materiálu řád, prostoru smysl a investici dlouhodobou hodnotu.",
+	openGraph: {
+		type: "website",
+		locale: "cs_CZ",
+		url: "/",
+		siteName: "Kristián Jankó",
+		title: "Kristián Jankó – architekt a projektant pozemních staveb",
+		description:
+			"Architektonické studie a projekty pro povolení staveb. Nadčasová a technicky promyšlená architektura s osobním přístupem ke klientovi.",
+		images: [
+			{
+				// FIXME:
+				url: "/og-image.jpg",
+				width: 1200,
+				height: 630,
+				alt: "Kristián Jankó – architektura a projektování staveb",
+			},
+		],
 	},
-	{
-		title: "Architekt není mobilní operátor",
-		desc: "Ze stejných materiálů lze postavit průměrnou stavbu i kvalitní architekturu. Rozdíl nevzniká v ceně betonu nebo tloušťce izolace, ale ve způsobu, jak jsou jednotlivé prvky uspořádány, proporčně vyváženy a technicky vyřešeny. Architekt propojuje funkci, konstrukci a kontext do jednoho logického celku. Určuje prostorovou hierarchii, pracuje s přirozeným světlem, optimalizuje provoz a předvídá dlouhodobé užívání budovy. Kvalita stavby proto není náhodná. Je výsledkem systematických rozhodnutí, která dávají materiálu řád, prostoru smysl a investici dlouhodobou hodnotu.",
-	},
-	{
-		title: "O vztahu ceny a kvality",
-		desc: "Ze stejných materiálů lze postavit průměrnou stavbu i kvalitní architekturu. Rozdíl nevzniká v ceně betonu nebo tloušťce izolace, ale ve způsobu, jak jsou jednotlivé prvky uspořádány, proporčně vyváženy a technicky vyřešeny. Architekt propojuje funkci, konstrukci a kontext do jednoho logického celku. Určuje prostorovou hierarchii, pracuje s přirozeným světlem, optimalizuje provoz a předvídá dlouhodobé užívání budovy. Kvalita stavby proto není náhodná. Je výsledkem systematických rozhodnutí, která dávají materiálu řád, prostoru smysl a investici dlouhodobou hodnotu.",
-	},
-	{
-		title: "Jednotka informace v architektuře",
-		desc: "Ze stejných materiálů lze postavit průměrnou stavbu i kvalitní architekturu. Rozdíl nevzniká v ceně betonu nebo tloušťce izolace, ale ve způsobu, jak jsou jednotlivé prvky uspořádány, proporčně vyváženy a technicky vyřešeny. Architekt propojuje funkci, konstrukci a kontext do jednoho logického celku. Určuje prostorovou hierarchii, pracuje s přirozeným světlem, optimalizuje provoz a předvídá dlouhodobé užívání budovy. Kvalita stavby proto není náhodná. Je výsledkem systematických rozhodnutí, která dávají materiálu řád, prostoru smysl a investici dlouhodobou hodnotu.",
-	},
-	{
-		title: "Pozemek pro stavbu: rovina, nebo terén?",
-		desc: "Ze stejných materiálů lze postavit průměrnou stavbu i kvalitní architekturu. Rozdíl nevzniká v ceně betonu nebo tloušťce izolace, ale ve způsobu, jak jsou jednotlivé prvky uspořádány, proporčně vyváženy a technicky vyřešeny. Architekt propojuje funkci, konstrukci a kontext do jednoho logického celku. Určuje prostorovou hierarchii, pracuje s přirozeným světlem, optimalizuje provoz a předvídá dlouhodobé užívání budovy. Kvalita stavby proto není náhodná. Je výsledkem systematických rozhodnutí, která dávají materiálu řád, prostoru smysl a investici dlouhodobou hodnotu.",
-	},
-	{
-		title: " Jak rozpoznat rukopis architekta",
-		desc: "Ze stejných materiálů lze postavit průměrnou stavbu i kvalitní architekturu. Rozdíl nevzniká v ceně betonu nebo tloušťce izolace, ale ve způsobu, jak jsou jednotlivé prvky uspořádány, proporčně vyváženy a technicky vyřešeny. Architekt propojuje funkci, konstrukci a kontext do jednoho logického celku. Určuje prostorovou hierarchii, pracuje s přirozeným světlem, optimalizuje provoz a předvídá dlouhodobé užívání budovy. Kvalita stavby proto není náhodná. Je výsledkem systematických rozhodnutí, která dávají materiálu řád, prostoru smysl a investici dlouhodobou hodnotu.",
-	},
-];
+};
 
 export default function Home() {
-	const [philosophyVisible, setPhilosophyVisible] = useState(
-		// TODO: learn this
-		Array(philosophy.length).fill(false),
-	);
-
-	const handlePhilosophyVisible = (index: number) => {
-		setPhilosophyVisible((prev) =>
-			prev.map((item, i) => (i === index ? !item : item)),
-		);
-	};
-
-	function addAnimation() {
-		const scroller = document.querySelector(".scroller");
-
-		// setAttribute expects both arguments to be strings
-		scroller?.setAttribute("data-animated", "true");
-
-		const scrollerInner = scroller?.querySelector(
-			".scroller__inner",
-		) as HTMLDivElement;
-		const scrollerContent = Array.from(scrollerInner.children);
-
-		scrollerContent.forEach((item) => {
-			const duplicatedItem = item.cloneNode(true) as Element;
-
-			duplicatedItem.setAttribute("aria-hidden", "true");
-			duplicatedItem.addEventListener("mousemove", activeCursor);
-			duplicatedItem.addEventListener("mouseleave", inactiveCursor);
-			duplicatedItem.addEventListener("click", removeCursor);
-			scrollerInner?.appendChild(duplicatedItem);
-		});
-	}
-
-	useEffect(() => {
-		addAnimation();
-	}, []);
 	return (
 		<>
 			<CustomCursor />
@@ -148,25 +112,24 @@ export default function Home() {
 						margin: "100px auto",
 					}}
 				>
-					<h2 className="section__title">
+					<h2 className="section__heading">
 						STAVBA NENÍ JEN O OBRÁZCÍCH A VÝKRESECH
 					</h2>
 					<p>
-						Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio
-						neque culpa omnis autem beatae, explicabo libero quo? Repellendus
-						reprehenderit veritatis culpa. Nobis quibusdam earum sapiente
-						voluptate sit nam adipisci nisi!
+						Každý projekt řeším od první myšlenky až po realizovatelný detail s
+						důrazem na funkčnost, estetiku a dlouhodobou udržitelnost. Výsledkem
+						je architektura, která obstojí v čase
 					</p>
 				</section>
 				<section className="services sen" id="services">
-					<h2 className="section__title">Služby</h2>
+					<h2 className="section__heading">Služby</h2>
 					<div className="services-grid">
 						{services.map((service, i) => {
 							return (
 								<div key={i} className="service-card">
 									<h3 className="service-card__title">{service.title}</h3>
 									<p>{service.desc}</p>
-									<ul>
+									<ul className="service-card__list">
 										{service.list.map((item, i) => {
 											return <li key={i}>{item}</li>;
 										})}
@@ -176,50 +139,14 @@ export default function Home() {
 						})}
 					</div>
 				</section>
-				<section>
-					<div className="home__bottom">
-						<div
-							className="home__scroller scroller"
-							data-speed="slow"
-							data-direction="left"
-						>
-							<div className="scroller__inner">
-								{portfolio
-									.slice()
-									.reverse()
-									.map((project, i) => {
-										return (
-											<Link
-												onMouseMove={activeCursor}
-												onMouseLeave={inactiveCursor}
-												onClick={removeCursor}
-												className="home__project-link"
-												key={project.id}
-												href={`/projects/${project.id}`}
-											>
-												<img
-													style={{
-														animation: `revealProjectImg 1s ${0.5 + i * 0.2}s forwards`,
-													}}
-													className="home__project-img"
-													key={project.id}
-													src={project.img[0]}
-													alt={project.name}
-												/>
-											</Link>
-										);
-									})}
-							</div>
-						</div>
-					</div>
-				</section>
+				<ImageSlider />
 				<section className="reference" id="reference">
-					<h2 className="section__title">Reference</h2>
+					<h2 className="section__heading">REFERENCE</h2>
 					{reference.map((r, i) => {
 						return (
 							<div className="reference-container gabarito" key={i}>
-								<div className="img-wrapper">
-									<img src={r.imgSrc} alt="" />
+								<div className="reference__img-wrapper">
+									<img className="reference__img" src={r.imgSrc} alt="" />
 								</div>
 								<div className="reference-details">
 									<h3 className="reference-details__title">{r.title}</h3>
@@ -231,24 +158,41 @@ export default function Home() {
 					})}
 				</section>
 				<section className="about-me" id="about-me">
-					<h2 className="section__title">O mně</h2>
+					<h2 className="section__heading">O mně</h2>
 					<div className="about-me-container">
 						<div>
 							<div className="about-me-img">
 								<img src="/kristian-janko.png" alt="" />
+								<div className="about-me-img-container">
+									<span className="archivo-black">20+</span>
+									<span
+										style={{ color: "hsl(0, 0%, 75%)" }}
+										className="urbanist"
+									>
+										let praxe v architektuře
+									</span>
+								</div>
 							</div>
-							<div className="gabarito">
-								<h3>Kontakt</h3>
-								<p>
-									Mob.:
-									<a href="tel:+420776171400">+420 776 171 400</a>
-								</p>
-								<p>
-									E-mail:
-									<a href="mailto:kristian.janko@email.cz">
-										kristian.janko@email.cz
+							<p
+								style={{ marginTop: "10px", fontSize: "2rem" }}
+								className="urbanist"
+							>
+								Pojďme tvořit spolu
+							</p>
+							<div className="about-me-contact-details gabarito">
+								<h3 style={{ fontSize: "2rem" }}>Kontakt</h3>
+								<div>
+									<span>Mob.: </span>
+									<a href="tel:+420776171400">
+										<AnimatedTxt text="+420 776 171 400" />
 									</a>
-								</p>
+								</div>
+								<div>
+									<span>E-mail: </span>
+									<a href="mailto:kristian.janko@email.cz">
+										<AnimatedTxt text="kristian.janko@email.cz" />
+									</a>
+								</div>
 								<div>
 									<span>IČO: 24457205</span> <CopyBtn value="24457205" />
 								</div>
@@ -256,9 +200,9 @@ export default function Home() {
 						</div>
 						<div className="gabarito">
 							<p>
-								Jmenuji se Kristián Jankó, pocházím z Ukrajiny a celý svůj
-								profesní život se věnuji architektuře a projektování pozemních
-								staveb, je to moje životní povolání.
+								Jmenuji se <strong>Kristián Jankó</strong> , pocházím z Ukrajiny
+								a celý svůj profesní život se věnuji architektuře a projektování
+								pozemních staveb, je to moje životní povolání.
 							</p>
 							<br />
 							<p>
@@ -275,53 +219,27 @@ export default function Home() {
 								marketingová deklarace.
 							</p>
 							<br />
-							<p>
-								PS: Nepracuji proto, abych „naplnil portfolio“, peníze a práci
-								mám - to nehledám. Mým cílem je navrhovat kvalitní, nadčasovou a
-								technicky promyšlenou architekturu.
-							</p>
-							<br />
-							<p>
-								Hledám investora, který chce postavit výjimečnou a technicky
-								promyšlenou stavbu. Klienta, který je náročný, přemýšlivý a
-								ochotný vést dialog. Společně bychom projektovali a stavěli
-								objekty, které obstojí v čase a mohou se stát referenčními
-								příklady kvalitní architektury.
+							<p
+								style={{
+									color: "hsl(0, 0%, 75%)",
+									borderLeft: "2px solid hsl(0, 0%, 75%)",
+									paddingLeft: "10px",
+								}}
+							>
+								<i>
+									“Nepracuji proto, abych „naplnil portfolio“, peníze a práci
+									mám - to nehledám. Mým cílem je navrhovat kvalitní, nadčasovou
+									a technicky promyšlenou architekturu.
+									<br />
+									<br />
+									Hledám investora, který chce postavit výjimečnou a technicky
+									promyšlenou stavbu. Klienta, který je náročný, přemýšlivý a
+									ochotný vést dialog. Společně bychom projektovali a stavěli
+									objekty, které obstojí v čase a mohou se stát referenčními
+									příklady kvalitní architektury.”
+								</i>
 							</p>
 						</div>
-					</div>
-				</section>
-				<section className="contact" id="contact">
-					<h2>Kontat</h2>
-				</section>
-				<section className="philosophy" id="philosophy">
-					<h2 className="section__title">Architektonické vedení</h2>
-					<p>
-						Architektura je proces – nejen návrh, ale i dialog, odpovědnost a
-						dlouhodobý dopad stavby na prostředí. Tento článek slouží jako
-						otevřený soubor myšlenek, které se přirozeně formují při práci na
-						projektech. Text průběžně doplňuji podle témat, která považuji za
-						zásadní pro současnou architektonickou praxi.
-					</p>
-					<div>
-						{philosophy.map((item, i) => {
-							return (
-								<div key={i}>
-									<button
-										onClick={() => handlePhilosophyVisible(i)}
-										className="philosophy-btn"
-									>
-										<span>{i + 1 + " " + item.title}</span>
-										<span>+</span>
-									</button>
-									<div
-										className={`philosophy-parent ${philosophyVisible[i] ? "philosophy-parent--visible" : ""}`}
-									>
-										<p className="philosophy-child">{item.desc}</p>
-									</div>
-								</div>
-							);
-						})}
 					</div>
 				</section>
 			</main>

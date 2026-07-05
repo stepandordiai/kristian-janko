@@ -1,12 +1,13 @@
 import {
 	Abhaya_Libre,
-	Raleway,
 	Tenor_Sans,
 	Cormorant_Garamond,
 	Sen,
 	Gabarito,
-	// Urbanist,
-	// EB_Garamond,
+	Urbanist,
+	EB_Garamond,
+	Vollkorn,
+	Archivo_Black,
 } from "next/font/google";
 import Header from "@/components/layout/Header/Header";
 import Footer from "@/components/layout/Footer/Footer";
@@ -14,9 +15,16 @@ import { Metadata } from "next";
 import Preload from "@/components/Preload/Preload";
 import { PreloadProvider } from "@/context/PreloadContext";
 import "@/scss/globals.scss";
+import { BASE_URL } from "@/lib/constants";
 
 const tenorSans = Tenor_Sans({
 	variable: "--font-tenor-sans",
+	weight: ["400"],
+	subsets: ["latin"],
+});
+
+const urbanist = Urbanist({
+	variable: "--font-urbanist",
 	weight: ["400"],
 	subsets: ["latin"],
 });
@@ -39,19 +47,12 @@ const gabarito = Gabarito({
 	subsets: ["latin"],
 });
 
-// const urbanist = Urbanist({
-// 	variable: "--font-urbanist",
-// 	weight: ["400"],
-// 	subsets: ["latin"],
-// });
+const ebGaramond = EB_Garamond({
+	variable: "--font-eb-garamond",
+	subsets: ["latin"],
+});
 
-// const ebGaramond = EB_Garamond({
-// 	variable: "--font-eb-garamond",
-// 	weight: ["400"],
-// 	subsets: ["latin"],
-// });
-
-const vollkorn = Raleway({
+const vollkorn = Vollkorn({
 	variable: "--font-vollkorn",
 	weight: ["400"],
 	subsets: ["latin"],
@@ -63,10 +64,14 @@ const abhayaLibre = Abhaya_Libre({
 	subsets: ["latin"],
 });
 
+const archivoBlack = Archivo_Black({
+	variable: "--font-archivo-black",
+	weight: ["400"],
+	subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
-	title: "Kristián Jankó",
-	description:
-		"Jmenuji se Kristián Jankó a celý život věnuji se architektuře a projektování pozemních staveb.",
+	metadataBase: new URL(BASE_URL),
 };
 
 export default function RootLayout({
@@ -77,10 +82,10 @@ export default function RootLayout({
 	return (
 		<html lang="cs">
 			<body
-				className={`${vollkorn.variable} ${abhayaLibre.variable} ${tenorSans.variable} ${cormorantGaramond.variable} ${sen.variable} ${gabarito.variable}`}
+				className={`${archivoBlack.variable} ${vollkorn.variable} ${abhayaLibre.variable} ${tenorSans.variable} ${cormorantGaramond.variable} ${sen.variable} ${gabarito.variable} ${urbanist.variable} ${ebGaramond.variable}`}
 			>
 				<PreloadProvider>
-					<Preload />
+					{/* <Preload /> */}
 					<Header />
 					{children}
 					<Footer />

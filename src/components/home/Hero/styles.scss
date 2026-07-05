@@ -38,8 +38,8 @@
 .hero__desc {
 	max-width: 500px;
 	margin-top: auto;
-	background: rgba(0, 0, 0, 0.6);
-	@include backdrop-filter(50px);
+	background: rgba(255, 255, 255, 0.1);
+	@include backdrop-filter(10px);
 	padding: 10px;
 	border-radius: 20px;
 }

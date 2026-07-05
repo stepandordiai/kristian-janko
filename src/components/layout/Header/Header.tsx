@@ -1,6 +1,6 @@
 "use client";
 
-import { usePreload } from "@/context/PreloadContext";
+// import { usePreload } from "@/context/PreloadContext";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -9,26 +9,25 @@ import AnimatedTxt from "@/components/AnimatedTxt/AnimatedTxt";
 import "./Header.scss";
 
 const navLinksData = [
-	{ name: "Úvod", path: `#hero` },
+	{ name: "Úvod", path: `/#hero` },
 	{
 		name: "Služby",
-		path: "#services",
+		path: "/#services",
 	},
 	{
 		name: "Reference",
-		path: "#reference",
+		path: "/#reference",
 	},
 
-	{ name: "O mně", path: "#about-me" },
-	{ name: "Kontakt", path: `#contact` },
+	{ name: "O mně", path: "/#about-me" },
 	{
 		name: "Filosofie",
-		path: "#philosophy",
+		path: "/filosofie",
 	},
 ];
 
 const Header = () => {
-	const done = usePreload();
+	// const done = usePreload();
 
 	const [menuOpen, setMenuOpen] = useState(false);
 
@@ -86,7 +85,6 @@ const Header = () => {
 			document.querySelector(".services") as HTMLElement,
 			document.querySelector(".reference") as HTMLElement,
 			document.querySelector(".about-me") as HTMLElement,
-			document.querySelector(".contact") as HTMLElement,
 			document.querySelector(".philosophy") as HTMLElement,
 		];
 		const navLinks = document.querySelectorAll(
@@ -114,7 +112,7 @@ const Header = () => {
 			cancelAnimationFrame(frameId);
 			document.removeEventListener("scroll", handleGetRectOnScroll);
 		};
-	}, []);
+	}, [pathname]);
 
 	// menu-btn
 
@@ -127,26 +125,19 @@ const Header = () => {
 			}
 		};
 
-		const closeMenuOnScroll = () => {
-			setMenuOpen(false);
-		};
-
 		document.addEventListener("keydown", closeMenuOnEsc);
-		window.addEventListener("scroll", closeMenuOnScroll);
 
 		return () => {
 			document.removeEventListener("keydown", closeMenuOnEsc);
-			window.removeEventListener("scroll", closeMenuOnScroll);
 		};
 	}, []);
 
 	return (
-		<header className="header">
-			<Link className="header__logo-link" href="/">
-				{/* <LogoAnimated key={done ? "animate" : "wait"} size={40} /> */}
-				{done && <LogoAnimated size={40} color="#fff" />}
-			</Link>
-			<div className="header-inner">
+		<>
+			<header className="header">
+				<Link className="header__logo-link" href="/">
+					<LogoAnimated size={40} color="#fff" />
+				</Link>
 				<nav ref={navRef} className="header__nav">
 					{navLinksData.map((navLink, i) => {
 						return (
@@ -167,60 +158,47 @@ const Header = () => {
 						style={indicatorStyle}
 					></div>
 				</nav>
-				{/* <div className="header__right-section">
-					<DarkModeBtn />
+				<button
+					className="menu-btn"
+					onClick={toggleMenu}
+					aria-expanded={menuOpen}
+					aria-controls="menu"
+				>
+					<span
+						className={`menu-btn-inner ${menuOpen ? "menu-btn-inner--active" : ""}`}
+					>
+						<span
+							className={`menu-btn-inner__center-line ${menuOpen ? "menu-btn-inner__center-line--active" : ""}`}
+						></span>
+					</span>
+				</button>
+			</header>
+			<div className={`menu ${menuOpen ? "menu--visible" : ""}`} id="menu">
+				<nav className="menu__nav">
+					{navLinksData.map((navLink, i) => {
+						return (
+							<Link
+								key={i}
+								onClick={() => setMenuOpen(false)}
+								className={`menu__nav-link ${menuOpen ? "menu__nav-link--active" : ""}`}
+								href={navLink.path}
+							>
+								<AnimatedTxt text={navLink.name} />
+							</Link>
+						);
+					})}
+				</nav>
+				<div>
 					<a
-						className="header__link link-effect"
+						className={`menu__link ${menuOpen ? "menu__link--visible" : ""}`}
 						href="https://www.instagram.com/kristian.janko"
 						target="_blank"
 					>
-						Instagram
+						<AnimatedTxt text="Instagram" />
 					</a>
-				
-				</div> */}
-				<button
-					onClick={toggleMenu}
-					className={`menu-btn ${menuOpen ? "menu-btn--active" : ""}`}
-					aria-expanded={menuOpen}
-					aria-controls="menu"
-				></button>
-			</div>
-
-			<div
-				className={`header__bottom ${menuOpen ? "header__bottom--active" : ""}`}
-			>
-				<div className="menu" id="menu">
-					<nav className="menu__nav">
-						{navLinksData.map((navLink, i) => {
-							return (
-								<Link
-									key={i}
-									onClick={() => setMenuOpen(false)}
-									className={`menu__nav-link link-effect ${
-										pathname === navLink.path ? "link-effect--active" : ""
-									} ${menuOpen ? "menu__nav-link--active" : ""}`}
-									style={
-										menuOpen ? { transitionDelay: `${1 + i * 100}ms` } : {}
-									}
-									href={navLink.path}
-								>
-									{navLink.name}
-								</Link>
-							);
-						})}
-					</nav>
-					<div>
-						<a
-							className="menu__link link-effect"
-							href="https://www.instagram.com/kristian.janko"
-							target="_blank"
-						>
-							Instagram
-						</a>
-					</div>
 				</div>
 			</div>
-		</header>
+		</>
 	);
 };
 
